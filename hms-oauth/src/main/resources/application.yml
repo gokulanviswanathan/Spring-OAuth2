@@ -1,0 +1,53 @@
+server:
+  port: 9999
+  ssl:
+    enabled: false
+  servlet:
+    context-path: /uaa  
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: hotel-management
+  datasource: 
+    url: jdbc:mysql://localhost:3306/restaurant
+    username: root
+    password: root
+    tomcat:
+      max-wait: 20000
+      max-active: 50
+      max-idle: 20
+      min-idle: 15
+# Spring Boot Admin client registeration      
+  boot:
+    admin:
+      client:
+        url: http://localhost:8761/admin
+        username: admin
+        password: admin
+management:
+  server:
+    servlet:
+      context-path: /
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  exposure:
+    health:
+      show-details: always
+    
